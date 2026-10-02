@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hospital Priority Queue</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="top"><div class="brand"><svg viewBox="0 0 24 24" width="34" height="34"><rect width="24" height="24" rx="6" fill="#0f766e"/><path d="M10 5h4v5h5v4h-5v5h-4v-5H5v-4h5z" fill="#fff"/></svg>
+<div><h1>Hospital Priority Queue</h1><p>Emergency Department Patient Management System</p></div></div><div class="clock" id="clock"></div></header>
+<main>
+<section class="stats">
+<div class="stat"><b id="sWaiting">0</b><span>Waiting Patients</span></div>
+<div class="stat crit"><b id="sCritical">0</b><span>Critical Patients</span></div>
+<div class="stat"><b id="sTreating">0</b><span>Currently Treating</span></div>
+<div class="stat ok"><b id="sTreated">0</b><span>Treated Today</span></div></section>
+<div class="grid">
+<section class="card" id="register"><h2>Register New Patient</h2>
+<form id="form" novalidate>
+<label>Patient Name<input name="name" maxlength="100"></label>
+<div class="row"><label>Patient ID<input name="patientId" maxlength="20" placeholder="P001"></label><label>Age<input name="age" type="number" min="0" max="120"></label></div>
+<div class="row"><label>Gender<select name="gender"><option>Male</option><option>Female</option><option>Other</option></select></label>
+<label>Emergency Priority<select name="priority"><option value="">Select…</option><option value="5">5 - Critical</option><option value="4">4 - Emergency</option><option value="3">3 - Urgent</option><option value="2">2 - Less Urgent</option><option value="1">1 - Non-Urgent</option></select></label></div>
+<label>Symptoms / Reason<textarea name="symptoms" rows="2" maxlength="300"></textarea></label>
+<label>Arrival Time <small>(blank = now)</small><input name="arrivalTime" type="datetime-local"></label>
+<p class="err" id="formErr" role="alert"></p>
+<div class="row"><button class="btn primary">Add Patient</button><button type="button" class="btn" id="clearForm">Clear Form</button></div></form>
+<div class="row tools"><button class="btn" id="demo">Load Demo Patients</button><button class="btn danger" id="clearQ">Clear Queue</button></div></section>
+<section class="card"><div class="head"><h2>Current Treatment Queue</h2><button class="btn call" id="callNext">CALL NEXT PATIENT</button></div>
+<div class="row"><input id="search" type="search" placeholder="Search by name or patient ID"></div>
+<div class="chips" id="filters"></div><div id="queue"></div></section>
+<section class="card"><h2>Now Treating</h2><div id="treating"></div><h2 class="gap">Recently Treated</h2><div id="treated"></div></section>
+</div></main><div id="toast" role="status"></div><script src="app.js"></script></body></html>

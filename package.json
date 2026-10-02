@@ -1,0 +1,1 @@
+{"name":"hospital-priority","version":"1.0.0","description":"ER patient priority queue","main":"server.js","engines":{"node":">=22.13"},"scripts":{"start":"node server.js","test":"node --test"},"dependencies":{"express":"^4.22.3"}}
