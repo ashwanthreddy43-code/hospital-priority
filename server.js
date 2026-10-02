@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const { PatientService, ServiceError } = require('./src/patientService');
-const svc = new PatientService(path.join(__dirname, 'patients.db'));
+const { defaultDbPath } = require('./src/database');
+const svc = new PatientService(defaultDbPath());
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,4 +24,6 @@ app.use((err, req, res, next) => {
   if (err.type === 'entity.parse.failed') return res.status(400).json({ error: 'Malformed JSON.' });
   console.error(err); res.status(500).json({ error: 'Something went wrong on the server.' });
 });
-app.listen(3000, () => console.log('Running at http://localhost:3000'));
+// Local: start the server. Vercel: it imports the exported app instead, so we must not listen.
+if (require.main === module) app.listen(process.env.PORT || 3000, () => console.log('Running at http://localhost:3000'));
+module.exports = app;
